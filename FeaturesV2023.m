@@ -7,7 +7,7 @@
 
 %% NOTA: 2023 CAMBIOS REALIZADOS POR FERNANDO SANDOVAL 18313
 
-function [Matriz_features,channel_ventana,c] = FeaturesV2(edf,fs,canales,muestras,c,op)
+function [Matriz_features,channel_ventana,c] = FeaturesV2(edf,canales,muestras,c,op)
 % ARGUMENTOS DE LA FUNCION
 %edf:   archivo .edf con señal EEG a analizar
 %canales: número de canales para encontrar features (de 1 a 4 canales)

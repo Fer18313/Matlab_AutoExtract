@@ -41,28 +41,30 @@ if saveDir == 0
 end
 
 %% Iterate through segments and save them
-
+   gesto_sample = struct();
 for i = 1:length(segment_start)
     % Extract a single segment for FistUp
-    FistUp_sample = emg1(segment_start(i):segment_end(i));
-
+    gestureData = emg1(segment_start(i):segment_end(i));
+    
     % Define a filename for the current segment
     filename = sprintf('gesto_1_segment_%d.mat', i);
-
+    gesto_sample.data = gestureData;
+    gesto_sample.sampling_frequency = sample_rate; %Fs 
     % Save the segment to the specified directory
-    save(fullfile(saveDir, filename), 'FistUp_sample');
+    save(fullfile(saveDir, filename), 'gesto_sample');
 end
 
 % Repeat the process for FistDown segments
 for i = 1:length(segment_start_2)
     % Extract a single segment for FistDown
-    FistDown_sample = emg2(segment_start_2(i):segment_end_2(i));
+    gestureData = emg2(segment_start_2(i):segment_end_2(i));
 
     % Define a filename for the current segment
     filename = sprintf('gesto_2_segment_%d.mat', i);
-
+    gesto_sample.data = gestureData;
+    gesto_sample.sampling_frequency = sample_rate_2; %Fs
     % Save the segment to the specified directory
-    save(fullfile(saveDir, filename), 'FistDown_sample');
+    save(fullfile(saveDir, filename), 'gesto_sample');
 end
 
 
