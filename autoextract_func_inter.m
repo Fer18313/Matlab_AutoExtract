@@ -34,9 +34,9 @@ baseFileName = 'signal_struct_';
     baseFileNameEndings = strsplit(baseFileNameEndings{1}, ', ');
     
   if numGestures == 2
-    variableNames = {'gesto_1', 'gesto_2'};
+    variableNames = {'gesto', 'gesto'};
   else
-    variableNames = {'gesto_1'};
+    variableNames = {'gesto'};
   end
     
     % podemos cambiar la variable folderPath para guardar en diferente localizacion los .mats creados.
