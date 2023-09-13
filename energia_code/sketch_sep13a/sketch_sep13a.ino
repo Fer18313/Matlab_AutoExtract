@@ -12,7 +12,7 @@ void setup() {
   pinMode(sw2Pin, INPUT_PULLUP);  // Set SW2 as an input with a pull-up resistor
 
   // Initialize serial communication at a specific baud rate (e.g., 9600)
-  Serial.begin(9600);
+  Serial.begin(38400);
 }
 
 
@@ -33,7 +33,6 @@ void loop() {
     for (int i = 0; i < dataSize; i++) {
       // Send each EMG data point over serial
       Serial.println(emgData[i], 8); // Send data with 8 decimal places
-      delay(100);
       // You can add a delay here if needed
       // Adjust the delay as per your requirements
     }
@@ -57,7 +56,6 @@ void loop() {
     for (int i = 0; i < dataSize; i++) {
       // Send each EMG data point over serial
       Serial.println(emgData[i], 8); // Send data with 8 decimal places
-      delay(100);
       // You can add a delay here if needed
       // Adjust the delay as per your requirements
     }
