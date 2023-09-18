@@ -114,11 +114,11 @@ function [movements_segment, filtered_emg_data,segment_start, segment_end] = Seg
     %% PLOT THE SIGNALS
    if plot_true ==1 % Plot the original, whitened, and filtered EMG signals
     figure;
-    subplot(3, 1, 1);
+    subplot(2, 1, 1);
     plot(time, emg_data);
     xlabel('Time (s)');
-    ylabel('Original EMG Signal');
-    title('Original EMG Signal');
+    ylabel('Original Signal');
+    title('Original Signal');
 
 %     subplot(4, 1, 2);
 %     plot(time, whitened_emg_data);
@@ -126,17 +126,17 @@ function [movements_segment, filtered_emg_data,segment_start, segment_end] = Seg
 %     ylabel('Whitened EMG Signal');
 %     title('Whitened EMG Signal');
 
-    subplot(3, 1, 2);
+    subplot(2, 1, 2);
     plot(time, filtered_emg_data);
     xlabel('Time (s)');
-    ylabel(' EMG Signal');
-    title('Filtered EMG Signal');
+    ylabel('Signal');
+    title('Filtered Signal - Segments');
 
-    subplot(3, 1, 3);
-    plot(time, filtered_emg_data);
-    xlabel('Time (s)');
-    ylabel('EMG Signal');
-    title('Segments');
+%     subplot(3, 1, 3);
+%     plot(time, filtered_emg_data);
+%     xlabel('Time (s)');
+%     ylabel('Signal');
+%     title('Segments');
 
     hold on; % Enable overlaying the segments on the same plot
     % Plot segments on the same subplot
