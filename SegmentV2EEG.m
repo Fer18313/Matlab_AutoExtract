@@ -12,8 +12,8 @@ function [movements_segment, filtered_emg_data,segment_start, segment_end] = Seg
 %% FILTER DESIGN
     % PRE-PROCESS DATA 
     % Define filter parameters for the bandpass filter
-    low_cutoff = 50;  % Adjust this to your desired lower cutoff frequency in Hz
-    high_cutoff = 150; % Adjust this to your desired higher cutoff frequency in Hz
+    low_cutoff = 1;  % Adjust this to your desired lower cutoff frequency in Hz
+    high_cutoff =30; % Adjust this to your desired higher cutoff frequency in Hz
     % Define notch filter parameters (e.g., for 60 Hz power line interference)
     notch_frequency = 60; % Adjust this to your specific power line frequency
    

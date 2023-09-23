@@ -1,5 +1,5 @@
 [~] = autoextract_func_inter('FistUp.xlsx','FistDown.xlsx'); % CAN MODIFY TO INCLUDE MORE GESTURES
-[~]= SegmentV2(gesto.data, gesto.sampling_frequency, 0.0002, 0.002, 100, 1); 
+[~]= SegmentV2EEG(gesto.data, gesto.sampling_frequency, 0.01, 0.2, 100, 1); 
 
 [~,~] = segment_auto_func(gesto_1, gesto_2)
 
