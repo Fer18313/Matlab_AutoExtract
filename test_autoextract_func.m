@@ -1,10 +1,25 @@
-[~] = autoextract_func_inter('FistUp.xlsx','FistDown.xlsx'); % CAN MODIFY TO INCLUDE MORE GESTURES
-[~]= SegmentV2EEG(gesto.data, gesto.sampling_frequency, 0.01, 0.2, 100, 1); 
+[~] = autoextract_func_inter('headTiltRight_user.xlsx','headDown_user.xlsx'); % CAN MODIFY TO INCLUDE MORE GESTURES
 
-[~,~] = segment_auto_func(gesto_1, gesto_2)
+[movements_segment, filtered_eeg_data,segment_start, segment_end]= SegmentV2EEG(gesto.data, gesto.sampling_frequency, 0.01, 100,1); 
+[movements_segment, filtered_emg_data,segment_start, segment_end]= SegmentV2(gesto.data, gesto.sampling_frequency, 0,10, 1); 
 
-% para segmentos 0.00005, 0.0002, 10, 1
+%% TEST THRESHOLD VALUES
+[~, beta_wave, ~, ~]=extract_brainwaves(filtered_eeg_data, gesto.sampling_frequency, true)
 
+%%
+    fft_result = fft(gesto.data)
+    n = length(gesto.data); % Number of data points
+    f = (0:(n-1)) * (gesto.sampling_frequency / n); % Frequency vector
+
+    % Calculate the magnitude of the FFT
+    fft_magnitude = abs(fft_result);
+
+    % Plot the FFT
+    figure;
+    plot(f, fft_magnitude);
+    title('FFT EEG Data');
+    xlabel('Frequencia (Hz)');
+    ylabel('Magnitud');
 
 %% PRUEBAS INTERSUJETO
 % Load the first .mat file

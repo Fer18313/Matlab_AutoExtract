@@ -57,6 +57,8 @@ desviacion = zeros(size_cint,canales);
 curtosis = zeros(size_cint,canales);
 lzx = zeros(size_cint,canales);
 eac = zeros(size_cint,canales);
+
+
 %Subventanas para la EAC
 ventana_EA = 10;
 %Muestras de cada subventana EAC

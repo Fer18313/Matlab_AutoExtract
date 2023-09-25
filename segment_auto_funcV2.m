@@ -1,4 +1,4 @@
-function [segments] = segment_auto_func(signal, lower_threshold, upper_threshold, min_segment_length)
+function [segments] = segment_auto_func(signal, alpha, window_size)
 % DEV: Fernando Sandoval
 % Code for automatic extraction of segments according to muscle activation
 % (double threshold values are set inside this function). 
@@ -8,17 +8,11 @@ function [segments] = segment_auto_func(signal, lower_threshold, upper_threshold
 % **PD> REQUIRES SegmentV2.m to be in the same file path
 
 % SEGMENTATION DETECTION
-lower_threshold = 0.0002;
-upper_threshold = 0.002;
-min_segment_length = 100;
-
-
-
 emg_data = signal.data;
 sample_rate = signal.sampling_frequency;
 
 %% Segmentation
-[segments, emg1, segment_start, segment_end]= SegmentV2(emg_data, sample_rate, lower_threshold, upper_threshold, min_segment_length, 0);
+[segments, emg1, segment_start, segment_end]= SegmentV2(emg_data, sample_rate,alpha,window_size,0);
 
 %% N samples
 n_sample = 1:segment_end(1) - segment_start(1) + 1;

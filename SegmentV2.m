@@ -1,4 +1,4 @@
-function [movements_segment, filtered_emg_data,segment_start, segment_end] = SegmentV2(emg_data, sample_rate, lower_threshold, upper_threshold, min_segment_length, plot_true)
+function [segment_matrix, filtered_emg_data,segment_start, segment_end] = SegmentV2(emg_data, sample_rate,alpha, window_size, plot_true)
 % Segment V2:
 % The function will pre-process the input signal using a narrow and 
 % band-pass filter combination, afterwards, calculating the absolute mean 
@@ -15,7 +15,7 @@ function [movements_segment, filtered_emg_data,segment_start, segment_end] = Seg
     low_cutoff = 50;  % Adjust this to your desired lower cutoff frequency in Hz
     high_cutoff = 150; % Adjust this to your desired higher cutoff frequency in Hz
     % Define notch filter parameters (e.g., for 60 Hz power line interference)
-    notch_frequency = 60; % Adjust this to your specific power line frequency
+    notch_frequency = 50; % Adjust this to your specific power line frequency
    
     % Maximum order to consider for AR model
     max_order = 30; % Adjust as needed
@@ -73,29 +73,47 @@ function [movements_segment, filtered_emg_data,segment_start, segment_end] = Seg
     segment_end = [];
     in_segment = false;
     feature_vectors = [];
-    movements_segment = [];
+    min_segment_length = 100;
+    % Initialize adaptive thresholds
+    lower_threshold = [];  % Initially empty
+    upper_threshold = [];  % Initially empty
+    % Initialize cell arrays to store segments and their lengths
+    segments = {};
+    segment_lengths = [];
 
-    % Calculate the absolute mean for a window of data points (adjust window size as needed)
-    window_size = 5; % Adjust as needed
     for i = 1:(length(filtered_emg_data) - window_size)
         % Calculate the absolute mean for the current window
         window_mean = mean(abs(filtered_emg_data(i:i+window_size-1)));
 
+        % Calculate adaptive thresholds based on a moving average of window_mean
+        if i == 1
+            % Initialize thresholds for the first window
+            lower_threshold = window_mean;
+            upper_threshold = window_mean;
+        else
+            % Update thresholds with a moving average approach
+            lower_threshold = (1 - alpha) * lower_threshold + alpha * window_mean;
+            upper_threshold = (1 - alpha) * upper_threshold + alpha * window_mean;
+        end
+
         if in_segment
-            % Check if the window_mean is below the threshold, indicating the end of the segment
-            if window_mean <  lower_threshold
+            % Check if the window_mean is below the lower_threshold, indicating the end of the segment
+            if window_mean < lower_threshold
                 in_segment = false;
                 segment_end = [segment_end, i+window_size-1];
                 % Check the segment length and exclude it if it's too short
                 if (i+window_size-1) - segment_start(end) >= min_segment_length
                     % If the segment is long enough, include it in processing
-                    % Extract the segment and calculate the absolute mean
+                    % Extract the segment
                     segment = filtered_emg_data(segment_start(end):(i+window_size-1));
-                    absolute_mean = mean(abs(segment));
 
-                    % Store the feature vector (absolute mean) for this segment
+                    % Calculate the absolute mean
+                    absolute_mean = mean(abs(segment));
                     feature_vectors = [feature_vectors, absolute_mean];
-                    movements_segment = [movements_segment, segment];
+
+                    % Store the segment and its length
+                    segments{end+1} = segment;
+                    segment_lengths(end+1) = length(segment);
                 end
                 % Clear the segment if it doesn't meet the length criteria
                 if (i+window_size-1) - segment_start(end) < min_segment_length
@@ -104,51 +122,71 @@ function [movements_segment, filtered_emg_data,segment_start, segment_end] = Seg
                 end
             end
         else
-            % Check if the window_mean is above the threshold, indicating the start of a new segment
+            % Check if the window_mean is above the upper_threshold, indicating the start of a new segment
             if window_mean >= upper_threshold
                 in_segment = true;
                 segment_start = [segment_start, i];
             end
         end
     end
-    %% PLOT THE SIGNALS
-   if plot_true ==1 % Plot the original, whitened, and filtered EMG signals
+
+    % Find the maximum segment length
+    max_segment_length = mean(segment_lengths);
+    max_segment_length = round(max_segment_length);
+    % Initialize a matrix to store the segments
+    segment_matrix = zeros(length(segments), max_segment_length);
+
+    % Fill the matrix with segments, either cutting or zero-padding as needed
+    for i = 1:length(segments)
+        segment = segments{i};
+        % Check if the segment length is greater than the maximum desired length
+        if length(segment) > max_segment_length
+            % Cut the segment to the maximum desired length
+            segment = segment(1:max_segment_length);
+        elseif length(segment) < max_segment_length
+            % Zero-pad the segment to the maximum desired length
+            padding_length = max_segment_length - length(segment);
+            segment = [segment, zeros(1, padding_length)];
+        end
+
+        % Store the modified segment in the matrix
+        segment_matrix(i, :) = segment;
+    end
+
+%% PLOTS
+if plot_true == 1
     figure;
+
+    % First Subplot
     subplot(2, 1, 1);
-    plot(time, emg_data);
-    xlabel('Time (s)');
-    ylabel('Original Signal');
-    title('Original Signal');
+    plot(time, filtered_emg_data, 'b', 'LineWidth', 1.5);
+    xlabel('Tiempo (s)');
+    ylabel('Amplitud');
+    title('Señal original - Filtrada');
+  
+    % Add a legend for the first subplot
+    legend('EMG');
 
-%     subplot(4, 1, 2);
-%     plot(time, whitened_emg_data);
-%     xlabel('Time (s)');
-%     ylabel('Whitened EMG Signal');
-%     title('Whitened EMG Signal');
-
+    % Second Subplot
     subplot(2, 1, 2);
     plot(time, filtered_emg_data);
-    xlabel('Time (s)');
-    ylabel('Signal');
-    title('Filtered Signal - Segments');
-
-%     subplot(3, 1, 3);
-%     plot(time, filtered_emg_data);
-%     xlabel('Time (s)');
-%     ylabel('Signal');
-%     title('Segments');
-
-    hold on; % Enable overlaying the segments on the same plot
+    xlabel('Tiempo (s)');
+    ylabel('Amplitud');
+    title('Señal Filtrada - Segmentos');
+    hold on;
+    
     % Plot segments on the same subplot
-    for i = 1:length(segment_end) % Use segment_end for iteration
+    for i = 1:length(segment_end)
         start_idx = segment_start(i);
         end_idx = segment_end(i);
-
-        plot(time(start_idx:end_idx), filtered_emg_data(start_idx:end_idx), 'r'); % Use 'r' for red color
+        plot(time(start_idx:end_idx), filtered_emg_data(start_idx:end_idx), 'r');
     end
-    hold off; % Disable overlaying
-   else
-       %break
-   end
+   legend('EMG','segmentos EMG');
+
+    hold off;
+
+
+
+ end
 end
 

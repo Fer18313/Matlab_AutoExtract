@@ -1,4 +1,4 @@
-function [signals] = autoextract_func_inter(gesto1,gesto2) % CAN MODIFY TO INCLUDE MORE GESTURES
+function [signals] = autoextract_func_inter(gesto1)
 % Dev: Fernando Sandoval
 % Function takes input arguments as .xlsx name of file. For the purpose of
 % ordering data in database, the files have to be inside the folderPath.
@@ -13,13 +13,6 @@ function [signals] = autoextract_func_inter(gesto1,gesto2) % CAN MODIFY TO INCLU
         dataStructs1 = extract_data_from_excel(gesto1);
         signals{end+1} = dataStructs1;
     end
-    
-    % Process gesto2
-    if numGestures >= 2
-        dataStructs2 = extract_data_from_excel(gesto2);
-        signals{end+1} = dataStructs2;
-    end
-   
 
 %% NAME, SAVE DIR
 
@@ -29,7 +22,7 @@ baseFileName = 'signal_struct_';
     prompt = 'Ingrese los nombres de los gestos(separados por coma):';
     dlgtitle = 'Input baseFileNameEndings';
     dims = [1 35]; 
-    definput = {'FistUp, FistDown'}; % Default value
+    definput = {'FistUp'}; % Default value
     baseFileNameEndings = inputdlg(prompt, dlgtitle, dims, definput);
     baseFileNameEndings = strsplit(baseFileNameEndings{1}, ', ');
     
