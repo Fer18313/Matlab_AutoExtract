@@ -12,11 +12,10 @@ Herramientas de control robótico e interfaces desarrolladas en la tesis de lín
 - Herramientas: Funciones necesarias para el funcionamiento de las interfaces. 
 - Imágenes: conjunto de imágenes necesarias para el display de las aplicaciones.
 ### Interfaces
-  - Interfaces de Control Robótico
-    - Interfaz de recolección de datos EMG/EEG:
-    ![interfaz_recoleccion](https://github.com/Fer18313/Matlab_AutoExtract/assets/80397009/ce2b8bf9-d91e-4cd4-be40-49a414b3d800)
-    - Interfaz de entrenamiento y simulación: 
-    ![control_robotico2](https://github.com/Fer18313/Matlab_AutoExtract/assets/80397009/ab42b111-9b00-4840-a284-529ff814a9b2)
+- Interfaz de recolección de datos EMG/EEG:
+![interfaz_recoleccion](https://github.com/Fer18313/Matlab_AutoExtract/assets/80397009/ce2b8bf9-d91e-4cd4-be40-49a414b3d800)
+- Interfaz de entrenamiento y simulación: 
+![control_robotico2](https://github.com/Fer18313/Matlab_AutoExtract/assets/80397009/ab42b111-9b00-4840-a284-529ff814a9b2)
 
     - Epileptic de Analysis Toolbox
       - Interfaz de entrenamiento con base de datos de epilepsia:
