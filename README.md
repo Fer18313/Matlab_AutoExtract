@@ -15,7 +15,8 @@ Herramientas de control robótico e interfaces desarrolladas en la tesis de lín
 - Interfaz de recolección de datos EMG/EEG:
 ![GIF Recording 2023-10-14 at 9 59 48 AM](https://github.com/Fer18313/Matlab_AutoExtract/assets/80397009/494bbfba-52af-46bc-a5ca-a7bb61368ee9)
 - Interfaz de entrenamiento y simulación: 
-![control_robotico2](https://github.com/Fer18313/Matlab_AutoExtract/assets/80397009/ab42b111-9b00-4840-a284-529ff814a9b2)
+![GIF Recording 2023-10-14 at 10 17 30 AM](https://github.com/Fer18313/Matlab_AutoExtract/assets/80397009/794534aa-5240-49dc-841b-1c9d40065585)
+
 
     - Epileptic de Analysis Toolbox
       - Interfaz de entrenamiento con base de datos de epilepsia:
