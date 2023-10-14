@@ -1,5 +1,5 @@
 # Interfaces de Control Robótico 2023
-## Estructura de Git
+### Estructura de Git
 Herramientas de control robótico e interfaces desarrolladas en la tesis de línea Biomédica 2023.
 - Códigos de Energia: Código para la generación de comunicación serial utilizando señales pre-grabadas.
 - DATABASE
