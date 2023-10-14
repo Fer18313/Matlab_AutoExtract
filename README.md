@@ -9,7 +9,8 @@ Herramientas de control robótico e interfaces desarrolladas en la tesis de lín
   - Sujetos
     - EEG: Registros .xlsx de datos obtenidos con sistemas Biopac de señales electroencefálograficas.
     - EMG: Registros .xlsx de datos obtenidos con sistemas Biopac de señales electromiográficas.
-## Documentos: Manuales de usuario para el uso de las interfaces contenidas y tesis desarrollada para línea biomédica 2023.
+## Documentos
+- Manuales de usuario para el uso de las interfaces contenidas y tesis desarrollada para línea biomédica 2023.
 - Herramientas: Funciones necesarias para el funcionamiento de las interfaces. 
 - Imágenes: conjunto de imágenes necesarias para el display de las aplicaciones.
 ### Interfaces
