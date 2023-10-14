@@ -1,1 +1,0 @@
-segment_auto_func(gesto_1, gesto_2);

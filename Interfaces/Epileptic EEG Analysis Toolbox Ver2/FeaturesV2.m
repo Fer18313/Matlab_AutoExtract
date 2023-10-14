@@ -32,8 +32,8 @@ end
 %Preprocesamiento: FILTROS
 %Se crea un filtro pasa bandas con un filtro Butterworth pasa bajas
 %y otro pasa altas.
-Fclp = 85; %Frequencia de corte para el pasa bajas
-Fchp = 0.5; %Frequencia de corte para el pasa altas
+Fclp = 45; %Frequencia de corte para el pasa bajas
+Fchp = 0.1; %Frequencia de corte para el pasa altas
 W_blp = Fclp/(fs/2); % Normalización de la frecuencia de corte pasa bajas
 W_bhp = Fchp/(fs/2); % Normalización de la frecuencia de corte pasa altas
 [blp,alp]= butter(2,W_blp, 'low'); % Filtro pasa bajo de segundo orden.
@@ -113,13 +113,13 @@ while(1)
               eac(flag,k)=eac(flag,k)+var(window_signal(lowbound:highbound,1));
             end
         end
-        if op(6) == 1
-        %FUNCIÓN DESHABILITADA POR SU REQUERIMIENTO DE TIEMPO
-            binlzx = (mean(abs(window_signal)))<=window_signal;
-            s = binary_seq_to_string(binlzx);
-            [lzx(flag,k), ~] = calc_lz_complexity(s,'exhaustive', 1);
-        end
-        if op(3) == 1
+%         if op(6) == 1
+%         %FUNCIÓN DESHABILITADA POR SU REQUERIMIENTO DE TIEMPO
+%             binlzx = (mean(abs(window_signal)))<=window_signal;
+%             s = binary_seq_to_string(binlzx);
+%             [lzx(flag,k), ~] = calc_lz_complexity(s,'exhaustive', 1);
+%         end
+         if op(3) == 1
             if(j>0) %contar ZC por cada ventana
                 for o=1:canales
                     zc(flag,o) = sum(z(j*muestras:i,o) == 1);
