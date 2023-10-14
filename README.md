@@ -24,9 +24,8 @@ Herramientas de control robótico e interfaces desarrolladas en la tesis de lín
       - Interfaz de entrenamiento con base de datos de epilepsia:
     ![interfazhumana](https://github.com/Fer18313/Matlab_AutoExtract/assets/80397009/002e742a-b287-4386-a7f3-81814dc0f8a1)
 - Robot_P560: Funciones necesarias para el control robótico.
+  ![GIF Recording 2023-10-14 at 12 09 59 PM](https://github.com/Fer18313/Matlab_AutoExtract/assets/80397009/3a9b91d3-b129-4036-ae91-207ec7f39386)
 
-
-  
 
 
 
