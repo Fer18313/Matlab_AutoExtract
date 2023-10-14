@@ -5,7 +5,7 @@ Herramientas de control robótico e interfaces desarrolladas en la tesis de lín
 - DATABASE
   - EEG: Datos .mat de capturas EEG. Análisis de datos respectivo (extracción de características y entrenamientos).
   - EMG: Datos .mat de capturas EMG. Análisis de datos respectivo (extracción de características y entrenamientos).
-  - HUMANA: Análisis de datos (extracción de características) de capturas .edf obtenidas de https://drive.google.com/drive/folders/0AFH5gt-X5K_kUk9PVA en colaboración con el centro de neurociencia HUMANA.
+  - HUMANA: Análisis de datos (extracción de características) de capturas .edf.
   - Sujetos
     - EEG: Registros .xlsx de datos obtenidos con sistemas Biopac de señales electroencefálograficas.
     - EMG: Registros .xlsx de datos obtenidos con sistemas Biopac de señales electromiográficas.
