@@ -10,8 +10,9 @@ Herramientas de control robótico e interfaces desarrolladas en la tesis de lín
     - EMG: Registros .xlsx de datos obtenidos con sistemas Biopac de señales electromiográficas.
 - Herramientas: Funciones necesarias para el funcionamiento de las interfaces. 
 - Interfaces
-  - Sub Item 1
-  - Sub Item 2
+  - Interfaces de Control Robótico
+  -  ![control_robotico2](https://github.com/Fer18313/Matlab_AutoExtract/assets/80397009/ab42b111-9b00-4840-a284-529ff814a9b2)
+  - Epileptic de Analysis Toolbox
 - Interfaces
 - Manuales
 - Robot_P560
@@ -20,6 +21,6 @@ Herramientas de control robótico e interfaces desarrolladas en la tesis de lín
 - Imagenes
   
 
-![control_robotico2](https://github.com/Fer18313/Matlab_AutoExtract/assets/80397009/ab42b111-9b00-4840-a284-529ff814a9b2)
+
 
 
