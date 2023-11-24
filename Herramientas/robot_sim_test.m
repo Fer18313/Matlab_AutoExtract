@@ -4,13 +4,13 @@
 % -------------------------------------------------------------------------
 
 %% Dev. Miguel Zea
-% Modificado por Fernando Sandoval, 2023
+%% Modificado por Fernando Sandoval, 2023
 % Verificar existencia de:
 % robot_fkine 
 % robot_ikine
 % Funciones necesarias dentro del proyecto.
 
-class = 2
+class =1
 
 % condicionales para manejo del control
 if class == 1

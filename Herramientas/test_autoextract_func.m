@@ -1,7 +1,14 @@
 [~] = autoextract_func_inter('headTiltRight_user.xlsx','headDown_user.xlsx'); % CAN MODIFY TO INCLUDE MORE GESTURES
 
-[movements_segment, filtered_eeg_data,segment_start, segment_end]= SegmentV2EEG(gesto.data, gesto.sampling_frequency, 0.001, 150, 100,1); 
-[movements_segment, filtered_emg_data,segment_start, segment_end]= SegmentV2(gesto.data, gesto.sampling_frequency, 0.001,150, 100, 1); 
+[segmentos_1, filtered_eeg_data,segment_start, segment_end]= SegmentV2EEG(gesto.data, gesto.sampling_frequency, 0.001, 150, 100,1); 
+[movements_segment, filtered_emg_data,segment_start, segment_end]= SegmentV2(gesto.data, gesto.sampling_frequency, 0.001,0, 250, 1); 
+
+%%
+[vector_gesto_1, ventanadatos_gesto_1, ~] = FeaturesV3023(segmentos_1, 1, size(segmentos_1,2), 1, 6);
+
+
+%%
+[vector_gesto_nuevo, ventanadatos_gesto_nuevo, ~] = FeaturesV2023(gesto.data, 1, length(gesto.data), 1, [1 1 1 1 1 0]);
 %%
 checkval = isfinite(gesto.data)
 index_of_zero = 0;
