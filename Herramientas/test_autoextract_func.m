@@ -92,11 +92,15 @@ data_length_sec1 = gesto.data_length_sec;
 load('signal_struct_HeadTiltRightP001.mat');
 data2 = gesto.data;
 data_length_sec2 = gesto.data_length_sec;
+% Load the third .mat file
+load('signal_struct_HeadTiltRightP001.mat');
+data3 = gesto.data;
+data_length_sec3 = gesto.data_length_sec;
 
 
 % Concatenate the data fields
-concatenatedData = [data1, data2];
-data_length_sec = data_length_sec1 + data_length_sec2;
+concatenatedData = [data1, data2, data3];
+data_length_sec = data_length_sec1 + data_length_sec2 + data_length_sec3;
 
 gesto = struct('data', concatenatedData, 'data_length_sec', data_length_sec, 'sampling_frequency', 200);
 
